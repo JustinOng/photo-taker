@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <script src="js/camera.js"></script>
+    <script src="js/serial.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body>
+    <div>
+      <select id="camera-select" onchange="onSelectCamera(this)"></select>
+    </div>
+
+    <canvas id="capture" width="320" height="240"></canvas>
+    <video id="video-display" playsinline autoplay></video>
+  </body>
+</html>
