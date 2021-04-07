@@ -14,6 +14,16 @@
       <button onclick="selectSerialPort(document.querySelector('#baud-select').value)">Select Serial Port</button>
       <button onclick="main()">Start</button>
     </div>
+    <div>
+      Movement increment (mm): <input id="movement-increment" type="number" value="1"/>
+      X Travel (mm): <input id="x-travel" type="number" value="10"/>
+      Y Travel (mm): <input id="y-travel" type="number" value="10"/>
+      Feed Rate: <input id="feedrate" type="number" value="1000"/>
+      Delay (ms): <input id="delay-ms" type="number" value="500"/>
+    </div>
+    <div>
+      Image Name: <input id="image-prefix" type="text" value="image.png"/>
+    </div>
     <div style="display: flex; flex-direction: row;">
       <div>
         <div>Video Input</div>
