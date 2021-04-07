@@ -10,6 +10,11 @@ let stream;
 async function onSelectCamera(ele) {
   const deviceId = ele.value;
 
+  if (deviceId === "None") {
+    document.querySelector("#video-display").srcObject = undefined;
+    return;
+  }
+
   stream = await navigator.mediaDevices.getUserMedia({
     video: {
       deviceId: {
@@ -64,7 +69,9 @@ async function saveImage(imageStr, fileName) {
     }
   }
   const cameras = await listCameras();
-  document.querySelector("#camera-select").innerHTML = cameras.map(
-    (camera) => `<option value=${camera.deviceId}>${camera.label}</option>`
-  );
+  document.querySelector("#camera-select").innerHTML =
+    "<option>None</option>" +
+    cameras.map(
+      (camera) => `<option value=${camera.deviceId}>${camera.label}</option>`
+    );
 })();
