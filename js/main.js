@@ -7,9 +7,6 @@ const X_LIMIT = 50;
 const Y_LIMIT = 50;
 
 async function main() {
-  await selectSerialPort(115200);
-  await delay(3000);
-
   sendSerial("G60");
   sendSerial("G91");
 

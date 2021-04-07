@@ -6,10 +6,33 @@
   </head>
   <body>
     <div>
-      <select id="camera-select" onchange="onSelectCamera(this)"></select>
+      Video Input: <select id="camera-select" onchange="onSelectCamera(this)"></select>
+      Serial/UART Baud Rate: <select id="baud-select">
+        <option>250000</option>
+        <option>115200</option>
+      </select>
+      <button onclick="selectSerialPort(document.querySelector('#baud-select').value)">Select Serial Port</button>
+      <button onclick="main()">Start</button>
     </div>
-
-    <canvas id="capture" width="320" height="240"></canvas>
-    <video id="video-display" playsinline autoplay></video>
+    <div style="display: flex; flex-direction: row;">
+      <div>
+        <div>Video Input</div>
+        <video id="video-display" playsinline autoplay></video>
+      </div>
+      <div>
+        <div>Latest Image</div>
+        <canvas id="capture" width="320" height="240"></canvas>
+      </div>
+      <div>
+        <div>Console</div>
+        <div style="height: 100%">
+          <pre id="console-output"></pre>
+        </div>
+        <div style="display: flex; flex-direction: row">
+          <input id="console-input"/>
+          <button>Send</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

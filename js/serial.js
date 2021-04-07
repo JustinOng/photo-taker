@@ -1,4 +1,4 @@
-let port, writer;
+let port, reader, writer;
 
 async function selectSerialPort(baudRate) {
   if (!("serial" in navigator)) {
@@ -9,12 +9,25 @@ async function selectSerialPort(baudRate) {
   port = await navigator.serial.requestPort();
   await port.open({ baudRate });
 
-  // detect marlin
-  // const decoder = new TextDecoderStream();
-  // inputDone = port.readable.pipeTo(decoder.writable);
-  // inputStream = decoder.readable;
+  (async function () {
+    const decoder = new TextDecoderStream();
+    inputDone = port.readable.pipeTo(decoder.writable);
+    inputStream = decoder.readable;
 
-  // reader = inputStream.getReader();
+    reader = inputStream.getReader();
+
+    const consoleOutput = document.querySelector("#console-output");
+    while (true) {
+      const { value, done } = await reader.read();
+      if (value) {
+        consoleOutput.textContent += value;
+      }
+      if (done) {
+        reader.releaseLock();
+        break;
+      }
+    }
+  })();
 
   const encoder = new TextEncoderStream();
   outputDone = encoder.readable.pipeTo(port.writable);
