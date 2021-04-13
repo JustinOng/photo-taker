@@ -27,6 +27,7 @@ async function main() {
     sendSerial(`G0 Y${INCREMENT} F${feedrate}`);
     x_inc = -x_inc;
     await delay(delay_ms);
+    takePhoto().then((imageStr) => saveImage(imageStr, image_name));
   }
 
   sendSerial("G61");
